@@ -9,7 +9,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// I import the Student object from the other module
 var object_1 = require("../Sprint1/object");
+// This is a tool function used in the merge sort algorithm to combine two lists
 function merge(left, right) {
     var sortedArray = [];
     var i = 0;
@@ -24,17 +26,31 @@ function merge(left, right) {
             j++;
         }
     }
+    // This combines and returns the sorted lists
     return __spreadArray(__spreadArray(__spreadArray([], sortedArray, true), left.slice(i), true), right.slice(j), true);
 }
+// This utilizes the merge sort algorithm and the above function to sort the students
 function mergeSort(students) {
+    // Here is some error handling
+    if (!Array.isArray(students)) {
+        throw new Error("Input must be an array of Student objects.");
+    }
+    for (var _i = 0, students_1 = students; _i < students_1.length; _i++) {
+        var student = students_1[_i];
+        if (!(student instanceof object_1.Student)) {
+            throw new Error("All elements in the array must be instances of the Student class.");
+        }
+    }
     if (students.length <= 1) {
         return students;
     }
     var mid = Math.floor(students.length / 2);
     var left = mergeSort(students.slice(0, mid));
     var right = mergeSort(students.slice(mid));
+    // Return sorted list when recursion ends
     return merge(left, right);
 }
+// Create a list of student objects to test the merge sort on
 var students = [
     new object_1.Student("Alice", "Sophomore", 3.5),
     new object_1.Student("Bob", "Junior", 3.8),
@@ -89,7 +105,9 @@ var students = [
     new object_1.Student("Yara", "Junior", 2.5),
     new object_1.Student("Zoe", "Freshman", 3.1)
 ];
+// This creates a list of sortedStudents using the merge sort algorithm
 var sortedStudents = mergeSort(students);
+// This prints out the sorted list in ascending order
 console.log("Students sorted by GPA (ascending):");
 sortedStudents.forEach(function (student) {
     console.log("".concat(student.name, ": ").concat(student.gpa));

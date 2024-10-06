@@ -1,7 +1,7 @@
 export class Student {
-    name: string;
-    year: string;
-    gpa: number;
+    readonly name: string; // Marked as readonly if these properties should not change after construction
+    readonly year: string;
+    readonly gpa: number;
 
     constructor(name: string, year: string, gpa: number) {
         this.name = name;

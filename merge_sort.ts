@@ -1,7 +1,9 @@
+// I import the Student object from the other module
 import { Student } from '../Sprint1/object';
 
+// This is a tool function used in the merge sort algorithm to combine two lists
 function merge(left: Student[], right: Student[]): Student[] {
-    let sortedArray: Student[] = [];
+    const sortedArray: Student[] = [];
     let i = 0;
     let j = 0;
 
@@ -15,21 +17,38 @@ function merge(left: Student[], right: Student[]): Student[] {
         }
     }
 
+    // This combines and returns the sorted lists
     return [...sortedArray, ...left.slice(i), ...right.slice(j)];
 }
 
+// This utilizes the merge sort algorithm and the above function to sort the students
 function mergeSort(students: Student[]): Student[] {
+    // Here is some error handling
+    if (!Array.isArray(students)) {
+        throw new Error("Input must be an array of Student objects.");
+    }
+
+    for (const student of students) {
+        if (!(student instanceof Student)) {
+            throw new Error("All elements in the array must be instances of the Student class.");
+        }
+    }
+
     if (students.length <= 1) {
         return students;
     }
 
     const mid = Math.floor(students.length / 2);
+    
     const left = mergeSort(students.slice(0, mid));
+    
     const right = mergeSort(students.slice(mid));
 
+    // Return sorted list when recursion ends
     return merge(left, right);
 }
 
+// Create a list of student objects to test the merge sort on
 const students: Student[] = [
     new Student("Alice", "Sophomore", 3.5),
     new Student("Bob", "Junior", 3.8),
@@ -85,8 +104,10 @@ const students: Student[] = [
     new Student("Zoe", "Freshman", 3.1)
 ];
 
+// This creates a list of sortedStudents using the merge sort algorithm
 const sortedStudents = mergeSort(students);
 
+// This prints out the sorted list in ascending order
 console.log("Students sorted by GPA (ascending):");
 sortedStudents.forEach(student => {
     console.log(`${student.name}: ${student.gpa}`);
