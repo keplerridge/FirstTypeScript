@@ -4,7 +4,7 @@ I wanted to introduce myself to TypeScript so this is what I work on. This softw
 
 I chose to write this particular program not only to learn a little bit of TypeScript. My end goal in my career is to work on machine learning and data science so I decided to do this particular project to also help familiarize myself more with merge sort.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/-Qe2GgMiye4)
 
 # Development Environment
 
